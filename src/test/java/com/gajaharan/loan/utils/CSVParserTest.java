@@ -3,6 +3,7 @@ package com.gajaharan.loan.utils;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.gajaharan.loan.config.GeneralConfig.TEST_RESOURCE_LOCATION;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 
@@ -20,7 +21,7 @@ public class CSVParserTest {
 
     @Test
     public void processCSVFileTest() {
-        assertEquals(7,csvParser.processCSVFile("src/test/resources/MarketData.csv").size());
+        assertEquals(7,csvParser.processCSVFile(TEST_RESOURCE_LOCATION).size());
     }
 
     @Test

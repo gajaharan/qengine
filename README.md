@@ -74,10 +74,10 @@ mvn test
 ```
 
 ##Requirements
-- [Z-001] CSV Parser
+- [Z-001] CSV Parser                - DONE
 - [Z-002] CSV Format Validator
-- [Z-003] Input Validator
-- [Z-004] Lender Model
+- [Z-003] Input Validator           - DONE
+- [Z-004] Lender Model              - DONE
 - [Z-005] Loan Quote Model
 - [Z-006] Lender Service (get all available lenders for quote)
 - [Z-007] Loan Calculator service - Loan rate

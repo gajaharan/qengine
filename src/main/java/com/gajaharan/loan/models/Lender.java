@@ -1,7 +1,5 @@
 package com.gajaharan.loan.models;
 
-import java.math.BigDecimal;
-
 /**
  * Created by gsatkunanandan on 18/03/2018.
  */

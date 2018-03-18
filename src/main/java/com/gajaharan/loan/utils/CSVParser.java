@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import static com.gajaharan.loan.config.GeneralConfig.DELIMITER;
+
 /**
  * Created by gsatkunanandan on 18/03/2018.
  */
@@ -18,10 +20,10 @@ public class CSVParser {
     public List<Lender> processCSVFile(String csvFilePath) {
 
         List<Lender> lendersList = null;
-        BufferedReader reader = null;
+        BufferedReader reader;
         try {
             File file = new File(csvFilePath);
-            InputStream inputStream = null;
+            InputStream inputStream;
 
             inputStream = new FileInputStream(file);
 
@@ -42,7 +44,7 @@ public class CSVParser {
     }
 
     private Function<String, Lender> mapToLender = (String line) -> {
-        String[] details = line.split(",");
+        String[] details = line.split(DELIMITER);
 
         String name = details[0];
         double rate = new Double(details[1]);

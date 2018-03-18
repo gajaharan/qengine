@@ -4,8 +4,7 @@ import com.gajaharan.loan.exceptions.InvalidRequestAmountException;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
-
+import static com.gajaharan.loan.config.GeneralConfig.TEST_RESOURCE_LOCATION;
 import static junit.framework.TestCase.assertTrue;
 
 /**
@@ -37,5 +36,27 @@ public class InputValidatorTest {
     @Test
     public void validateCorrectRequestBelowAmountExceptionTest() throws InvalidRequestAmountException {
         assertTrue(validator.isValidLoanAmount(1000));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validateIllegalArgumentTest() throws IllegalArgumentException {
+        String[] args ={TEST_RESOURCE_LOCATION};
+        validator.isValidArgumentLength(args);
+    }
+
+    @Test
+    public void validateLegalArgumentTest() {
+        String[] args ={TEST_RESOURCE_LOCATION, "1000"};
+        assertTrue(validator.isValidArgumentLength(args));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validateLoanAmountIsNotNumericTest() throws IllegalArgumentException {
+        validator.isNumeric("ABC");
+    }
+
+    @Test
+    public void validateLoanAmountIsNumericTest() {
+        assertTrue(validator.isNumeric("1000"));
     }
 }

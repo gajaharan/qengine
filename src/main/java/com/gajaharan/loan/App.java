@@ -1,21 +1,21 @@
 package com.gajaharan.loan;
 
 import com.gajaharan.loan.exceptions.InvalidRequestAmountException;
-import com.gajaharan.loan.models.Lender;
-import com.gajaharan.loan.utils.CSVParser;
+import com.gajaharan.loan.models.LoanQuote;
 import com.gajaharan.loan.utils.InputValidator;
 
-import java.util.List;
-
 public class App {
-    public static void main( String[] args ) throws InvalidRequestAmountException {
-        String csvFile = args[0];
-        Integer loanAmount = new Integer(args[1]);
+    public static void main( String[] args ) throws IllegalArgumentException, InvalidRequestAmountException {
         InputValidator inputValidator = new InputValidator();
-        CSVParser csvParser = new CSVParser();
 
-        if (inputValidator.isValidLoanAmount(loanAmount)) {
-            List<Lender> lenders = csvParser.processCSVFile(csvFile);
+        if (inputValidator.isValidArgumentLength(args) && inputValidator.isNumeric(args[1])) {
+            String csvFile = args[0];
+            Integer loanAmount = new Integer(args[1]);
+
+            if (inputValidator.isValidLoanAmount(loanAmount)) {
+                System.out.println(new LoanQuote(loanAmount, csvFile));
+            }
         }
+
     }
 }
