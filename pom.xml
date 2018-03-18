@@ -10,7 +10,7 @@
 
   <properties>
     <jacoco.plugin.version>0.7.7.201606060606</jacoco.plugin.version>
-    <jacoco.coverage>0.90</jacoco.coverage>
+    <jacoco.coverage>0.80</jacoco.coverage>
     <jacoco.missed.count>100</jacoco.missed.count>
   </properties>
 
