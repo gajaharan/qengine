@@ -14,6 +14,7 @@ public class GeneralConfig {
     public static final String INVALID_LOAN_AMOUNT = "The loan amount should be between 1000 and 15000";
     public static final String INVALID_INCREMENT_AMOUNT = "The loan amount is not an incremental of 100";
     public static final String INVALID_NUMBER = "The loan amount is not valid number";
+    public static final String QUOTE_UNAVAILABLE = "Sorry, it is not possible to provide a loan at this time.";
 
     public static final String TEST_RESOURCE_LOCATION = "src/test/resources/MarketData.csv";
 }

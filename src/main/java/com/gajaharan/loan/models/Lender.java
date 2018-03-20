@@ -3,10 +3,10 @@ package com.gajaharan.loan.models;
 /**
  * Created by gsatkunanandan on 18/03/2018.
  */
-public class Lender {
+public class Lender implements Comparable<Lender> {
     private String name;
     private double rate;
-    private double availableAmount;
+    private Integer availableAmount;
 
     public Lender(String name, double rate, Integer availableAmount) {
         this.name = name;
@@ -30,12 +30,17 @@ public class Lender {
         this.rate = rate;
     }
 
-    public double getAvailableAmount() {
+    public Integer getAvailableAmount() {
         return availableAmount;
     }
 
-    public void setAvailableAmount(double availableAmount) {
+    public void setAvailableAmount(Integer availableAmount) {
         this.availableAmount = availableAmount;
+    }
+
+    @Override
+    public int compareTo(Lender lender) {
+        return Double.compare(getRate(), lender.getRate());
     }
 
 
