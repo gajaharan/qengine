@@ -3,6 +3,11 @@ package com.gajaharan.loan.config;
 /**
  * Created by gsatkunanandan on 18/03/2018.
  */
+
+/**
+ * This would ideally be configuration file in xml and we would have a utility to get the configurations.
+ *
+ */
 public class GeneralConfig {
     public static final String DELIMITER = ",";
 
@@ -11,7 +16,7 @@ public class GeneralConfig {
     public static final int MAX_LOAN = 15000;
     public static final int LOAN_TERM_IN_MONTHS = 36;
 
-    public static final String INVALID_ARGUMENT = "Please specify in the format of quote-engine.jar [market_file] [loan_amount]";
+    public static final String INVALID_ARGUMENT = "Please specify in the format of qengine.jar [market_file] [loan_amount]";
     public static final String INVALID_LOAN_AMOUNT = "The loan amount should be between 1000 and 15000";
     public static final String INVALID_INCREMENT_AMOUNT = "The loan amount is not an incremental of 100";
     public static final String INVALID_NUMBER = "The loan amount is not valid number";

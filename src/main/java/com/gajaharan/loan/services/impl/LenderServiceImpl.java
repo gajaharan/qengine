@@ -23,11 +23,22 @@ public class LenderServiceImpl implements LenderService {
         lenders = csvParser.processCSVFile(csvFile);
     }
 
+    /**
+     *
+     * @return All lenders from market data file
+     */
     @Override
     public List<Lender> getLenders() {
         return lenders;
     }
 
+    /**
+     * Gets list of all lenders who match the requested amount from the quote
+     *
+     * @param requestedAmount
+     * @return
+     * @throws LoanUnavailableException
+     */
     @Override
     public List<Lender> getListOfLendersForQuote(Integer requestedAmount) throws LoanUnavailableException {
         double availableAmountToLend = getMaximumLoanValue();
@@ -58,11 +69,15 @@ public class LenderServiceImpl implements LenderService {
         return selectedLenders;
     }
 
+    /**
+     * Gets the total combined loan amount from all lenders
+     *
+     * @return
+     */
     @Override
     public double getMaximumLoanValue() {
         return lenders.stream()
                 .mapToInt(Lender::getAvailableAmount)
                 .sum();
-
     }
 }

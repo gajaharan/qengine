@@ -73,9 +73,18 @@ e.g. `java -jar target/qengine-1.0-SNAPSHOT.jar src/main/resources/MarketData.cs
 mvn test
 ```
 
+## Viewing Jacoco test coverage reports
+In the root project after running maven build or maven test then in root folder navigate to
+`/target/site/jacoco/index.html`
+
 ##Assumptions
 - The console application can be adapted to Spring/Spring boot implementation with RESTful interface.
-- The models acts as both the model data and controller.
+- The models acts as both the model data and controller. This ideally should not be done.
+- The lender rates does not change within the given loan term
+- TDD used so that unit tests created fails and then fix/implemented the code to fix the test.
+- Uses monthly compounding interest.
+- Used Jacoco for test coverage.
+
 
 ##Requirements
 - [Z-001] CSV Parser                - DONE

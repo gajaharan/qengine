@@ -20,11 +20,24 @@ public class LoanCalculatorServiceImpl implements LoanCalculatorService {
         this.lenders = lenders;
     }
 
+    /**
+     *
+     * Gets the average loan rate from selected lenders for a given loan amount
+     * @return
+     */
     @Override
     public double getAverageLoanRate() {
-        return this.lenders.stream().mapToDouble(t -> t.getRate()).average().getAsDouble();
+        return this.lenders.stream()
+                .mapToDouble(t -> t.getRate())
+                .average()
+                .getAsDouble();
     }
 
+    /**
+     *
+     * Gets the monthly payment for a given loan amount and loan rate.
+     * @return
+     */
     @Override
     public double getMonthlyPayment() {
         double rate = getAverageLoanRate() * 100;
@@ -34,6 +47,10 @@ public class LoanCalculatorServiceImpl implements LoanCalculatorService {
         return monthlyPayment;
     }
 
+    /**
+     * Gets the total payment for a given loan amount and loan rate.
+     * @return
+     */
     @Override
     public double getTotalPayment() {
         return getMonthlyPayment() * LOAN_TERM_IN_MONTHS;

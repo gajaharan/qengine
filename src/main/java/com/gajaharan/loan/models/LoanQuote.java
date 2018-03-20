@@ -39,37 +39,21 @@ public class LoanQuote {
         return requestedLoanAmount;
     }
 
-    public void setRequestedLoanAmount(Integer requestedLoanAmount) {
-        this.requestedLoanAmount = requestedLoanAmount;
-    }
-
     public double getLoanRate() {
         return loanRate;
-    }
-
-    public void setLoanRate(double loanRate) {
-        this.loanRate = loanRate;
     }
 
     public double getMonthlyRepayment() {
         return monthlyRepayment;
     }
 
-    public void setMonthlyRepayment(double monthlyRepayment) {
-        this.monthlyRepayment = monthlyRepayment;
-    }
-
     public double getTotalRepayment() {
         return totalRepayment;
     }
 
-    public void setTotalRepayment(double totalRepayment) {
-        this.totalRepayment = totalRepayment;
-    }
-
     @Override
     public String toString() {
-        return "Requested amount: £" + requestedLoanAmount + "\n" +
+        return "Requested amount: £" + getRequestedLoanAmount() + "\n" +
                 "Rate:" + Math.round(getLoanRate() * 100) + "%\n" +
                 "Monthly repayment: £" + new DecimalFormat("###.##").format(getMonthlyRepayment()) + "\n" +
                 "Total repayment: £" + new DecimalFormat("###.##").format(getTotalRepayment());

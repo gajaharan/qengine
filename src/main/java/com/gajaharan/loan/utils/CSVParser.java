@@ -17,6 +17,12 @@ import static com.gajaharan.loan.config.GeneralConfig.DELIMITER;
 public class CSVParser {
     private static final Logger LOGGER = Logger.getLogger(CSVParser.class.getName());
 
+    /**
+     * Parses CSV file in a particular format of lender_name, lender_rate, lender_amount
+     *
+     * @param csvFilePath
+     * @return
+     */
     public List<Lender> processCSVFile(String csvFilePath) {
 
         List<Lender> lendersList = null;

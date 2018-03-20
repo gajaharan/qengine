@@ -10,7 +10,7 @@
 
   <properties>
     <jacoco.plugin.version>0.7.7.201606060606</jacoco.plugin.version>
-    <jacoco.coverage>0.80</jacoco.coverage>
+    <jacoco.coverage>0.90</jacoco.coverage>
     <jacoco.missed.count>100</jacoco.missed.count>
   </properties>
 
@@ -33,6 +33,12 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>${jacoco.plugin.version}</version>
+        <configuration>
+          <excludes>
+            <exclude>**/*Config.*</exclude>
+            <exclude>**/*App*</exclude>
+          </excludes>
+        </configuration>
         <executions>
           <execution>
             <id>prepare-agent</id>

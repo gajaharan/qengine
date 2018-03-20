@@ -14,30 +14,33 @@ public class Lender implements Comparable<Lender> {
         this.availableAmount = availableAmount;
     }
 
+    /**
+     *
+     * @return Lender's name
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     *
+     * @return Lender's current rate
+     */
     public double getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
-        this.rate = rate;
-    }
-
+    /**
+     *
+     * @return Lender's available amount from lenders
+     */
     public Integer getAvailableAmount() {
         return availableAmount;
     }
 
-    public void setAvailableAmount(Integer availableAmount) {
-        this.availableAmount = availableAmount;
-    }
-
+    /**
+     * Compares the different lender's rates
+     */
     @Override
     public int compareTo(Lender lender) {
         return Double.compare(getRate(), lender.getRate());
