@@ -2,8 +2,11 @@ package com.gajaharan.loan.models;
 
 import com.gajaharan.loan.exceptions.LoanUnavailableException;
 import com.gajaharan.loan.services.LenderService;
+import com.gajaharan.loan.services.LoanCalculatorService;
 import com.gajaharan.loan.services.impl.LenderServiceImpl;
+import com.gajaharan.loan.services.impl.LoanCalculatorServiceImpl;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -19,11 +22,17 @@ public class LoanQuote {
     private List<Lender> lenders;
 
     private LenderService lenderService;
+    private LoanCalculatorService quoteCalculatorService;
 
     public LoanQuote(Integer requestedLoanAmount, String marketData) throws LoanUnavailableException {
         this.requestedLoanAmount = requestedLoanAmount;
         this.lenderService = new LenderServiceImpl(marketData);
         this.lenders = lenderService.getListOfLendersForQuote(requestedLoanAmount);
+        this.quoteCalculatorService = new LoanCalculatorServiceImpl(requestedLoanAmount, lenders);
+
+        this.loanRate = quoteCalculatorService.getAverageLoanRate();
+        this.monthlyRepayment = quoteCalculatorService.getMonthlyPayment();
+        this.totalRepayment = quoteCalculatorService.getTotalPayment();
     }
 
     public Integer getRequestedLoanAmount() {
@@ -61,8 +70,8 @@ public class LoanQuote {
     @Override
     public String toString() {
         return "Requested amount: £" + requestedLoanAmount + "\n" +
-                "Rate:" + getLoanRate() + "%\n" +
-                "Monthly repayment: £" + getMonthlyRepayment() + "\n" +
-                "Total repayment: £" + getTotalRepayment();
+                "Rate:" + Math.round(getLoanRate() * 100) + "%\n" +
+                "Monthly repayment: £" + new DecimalFormat("###.##").format(getMonthlyRepayment()) + "\n" +
+                "Total repayment: £" + new DecimalFormat("###.##").format(getTotalRepayment());
     }
 }

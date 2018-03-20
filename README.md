@@ -82,8 +82,8 @@ mvn test
 - [Z-002] CSV Format Validator
 - [Z-003] Input Validator           - DONE
 - [Z-004] Lender Model              - DONE
-- [Z-005] Loan Quote Model
+- [Z-005] Loan Quote Model          - DONE
 - [Z-006] Lender Service (get all available lenders for quote)  - DONE
-- [Z-007] Loan Calculator service - Loan rate
-- [Z-008] Loan Calculator service - Monthly repayment
-- [Z-009] Loan Calculator service - Total repayment
+- [Z-007] Loan Calculator service - Loan rate                   - DONE
+- [Z-008] Loan Calculator service - Monthly repayment           - DONE
+- [Z-009] Loan Calculator service - Total repayment             - DONE
