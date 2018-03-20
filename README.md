@@ -73,13 +73,17 @@ e.g. `java -jar target/qengine-1.0-SNAPSHOT.jar src/main/resources/MarketData.cs
 mvn test
 ```
 
+##Assumptions
+- The console application can be adapted to Spring/Spring boot implementation with RESTful interface.
+- The models acts as both the model data and controller.
+
 ##Requirements
 - [Z-001] CSV Parser                - DONE
 - [Z-002] CSV Format Validator
 - [Z-003] Input Validator           - DONE
 - [Z-004] Lender Model              - DONE
 - [Z-005] Loan Quote Model
-- [Z-006] Lender Service (get all available lenders for quote)
+- [Z-006] Lender Service (get all available lenders for quote)  - DONE
 - [Z-007] Loan Calculator service - Loan rate
 - [Z-008] Loan Calculator service - Monthly repayment
 - [Z-009] Loan Calculator service - Total repayment

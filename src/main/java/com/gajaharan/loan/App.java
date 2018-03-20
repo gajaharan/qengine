@@ -1,11 +1,12 @@
 package com.gajaharan.loan;
 
 import com.gajaharan.loan.exceptions.InvalidRequestAmountException;
+import com.gajaharan.loan.exceptions.LoanUnavailableException;
 import com.gajaharan.loan.models.LoanQuote;
 import com.gajaharan.loan.utils.InputValidator;
 
 public class App {
-    public static void main( String[] args ) throws IllegalArgumentException, InvalidRequestAmountException {
+    public static void main( String[] args ) throws IllegalArgumentException, InvalidRequestAmountException, LoanUnavailableException {
         InputValidator inputValidator = new InputValidator();
 
         if (inputValidator.isValidArgumentLength(args) && inputValidator.isNumeric(args[1])) {

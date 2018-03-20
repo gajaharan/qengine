@@ -1,6 +1,8 @@
 package com.gajaharan.loan.models;
 
-import com.gajaharan.loan.utils.CSVParser;
+import com.gajaharan.loan.exceptions.LoanUnavailableException;
+import com.gajaharan.loan.services.LenderService;
+import com.gajaharan.loan.services.impl.LenderServiceImpl;
 
 import java.util.List;
 
@@ -16,11 +18,12 @@ public class LoanQuote {
 
     private List<Lender> lenders;
 
-    private CSVParser csvParser = new CSVParser();
+    private LenderService lenderService;
 
-    public LoanQuote(Integer requestedLoanAmount, String marketData) {
+    public LoanQuote(Integer requestedLoanAmount, String marketData) throws LoanUnavailableException {
         this.requestedLoanAmount = requestedLoanAmount;
-        this.lenders = csvParser.processCSVFile(marketData);
+        this.lenderService = new LenderServiceImpl(marketData);
+        this.lenders = lenderService.getListOfLendersForQuote(requestedLoanAmount);
     }
 
     public Integer getRequestedLoanAmount() {
