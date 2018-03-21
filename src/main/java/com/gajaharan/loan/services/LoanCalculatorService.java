@@ -1,12 +1,14 @@
 package com.gajaharan.loan.services;
 
+import java.math.BigDecimal;
+
 /**
  * Created by gsatkunanandan on 20/03/2018.
  */
 public interface LoanCalculatorService {
-    double getAverageLoanRate();
+    BigDecimal getAverageLoanRate();
 
-    double getMonthlyPayment();
+    BigDecimal getMonthlyPayment();
 
-    double getTotalPayment();
+    BigDecimal getTotalPayment();
 }

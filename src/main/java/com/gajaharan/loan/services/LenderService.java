@@ -3,6 +3,7 @@ package com.gajaharan.loan.services;
 import com.gajaharan.loan.exceptions.LoanUnavailableException;
 import com.gajaharan.loan.models.Lender;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -11,5 +12,5 @@ import java.util.List;
 public interface LenderService {
     List<Lender> getLenders();
     List<Lender> getListOfLendersForQuote(Integer requestedAmount) throws LoanUnavailableException;
-    double getMaximumLoanValue();
+    BigDecimal getMaximumLoanValue();
 }

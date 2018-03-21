@@ -3,6 +3,7 @@ package com.gajaharan.loan.utils;
 import com.gajaharan.loan.models.Lender;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Function;
 import java.util.logging.Level;
@@ -53,9 +54,8 @@ public class CSVParser {
         String[] details = line.split(DELIMITER);
 
         String name = details[0];
-        double rate = new Double(details[1]);
-        Integer availableAmount = new Integer(details[2]);
-
+        BigDecimal rate = new BigDecimal(details[1]);
+        BigDecimal availableAmount = new BigDecimal(details[2]);
         return new Lender(name, rate, availableAmount);
     };
 }

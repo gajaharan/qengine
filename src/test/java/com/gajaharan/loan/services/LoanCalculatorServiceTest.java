@@ -3,9 +3,10 @@ package com.gajaharan.loan.services;
 import com.gajaharan.loan.models.Lender;
 import com.gajaharan.loan.services.impl.LenderServiceImpl;
 import com.gajaharan.loan.services.impl.LoanCalculatorServiceImpl;
-import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +28,9 @@ public class LoanCalculatorServiceTest {
         this.lenderService = new LenderServiceImpl(TEST_RESOURCE_LOCATION);
         this.lenders = this.lenderService.getListOfLendersForQuote(requestedAmount);
         this.quoteCalculatorService = new LoanCalculatorServiceImpl(requestedAmount, lenders);
-        double expectedLoanRate = 0.07;
-        double actualLoanRate = quoteCalculatorService.getAverageLoanRate();
-        assertEquals(expectedLoanRate, actualLoanRate, 0.01);
+        BigDecimal expectedLoanRate = BigDecimal.valueOf(0.07);
+        BigDecimal actualLoanRate = quoteCalculatorService.getAverageLoanRate().setScale(2, RoundingMode.HALF_EVEN);
+        assertEquals(expectedLoanRate, actualLoanRate);
     }
 
     @Test
@@ -38,9 +39,9 @@ public class LoanCalculatorServiceTest {
         this.lenderService = new LenderServiceImpl(TEST_RESOURCE_LOCATION);
         this.lenders = this.lenderService.getListOfLendersForQuote(requestedAmount);
         this.quoteCalculatorService = new LoanCalculatorServiceImpl(requestedAmount, lenders);
-        double expectedMonthlyPayment = 30.88;
-        double actualMonthlyPaymentsToTwoDecimalPlaces = quoteCalculatorService.getMonthlyPayment();
-        assertEquals(expectedMonthlyPayment, actualMonthlyPaymentsToTwoDecimalPlaces, 0.01);
+        BigDecimal expectedMonthlyPayment = BigDecimal.valueOf(30.88);
+        BigDecimal actualMonthlyPaymentsToTwoDecimalPlaces = quoteCalculatorService.getMonthlyPayment();
+        assertEquals(expectedMonthlyPayment, actualMonthlyPaymentsToTwoDecimalPlaces);
     }
 
     @Test
@@ -49,9 +50,9 @@ public class LoanCalculatorServiceTest {
         this.lenderService = new LenderServiceImpl(TEST_RESOURCE_LOCATION);
         this.lenders = this.lenderService.getListOfLendersForQuote(requestedAmount);
         this.quoteCalculatorService = new LoanCalculatorServiceImpl(requestedAmount, lenders);
-        double expectedTotalRepayment = 1111.57;
-        double actualTotalRepayment = quoteCalculatorService.getTotalPayment();
-        assertEquals(expectedTotalRepayment, actualTotalRepayment, 0.01);
+        BigDecimal expectedTotalRepayment = BigDecimal.valueOf(1111.68);
+        BigDecimal actualTotalRepayment = quoteCalculatorService.getTotalPayment();
+        assertEquals(expectedTotalRepayment, actualTotalRepayment);
     }
 
     @Test

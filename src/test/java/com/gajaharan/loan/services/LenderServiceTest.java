@@ -6,7 +6,9 @@ import com.gajaharan.loan.services.impl.LenderServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.gajaharan.loan.config.GeneralConfig.TEST_RESOURCE_LOCATION;
@@ -37,15 +39,15 @@ public class LenderServiceTest {
 
     @Test
     public void shouldGetMaximumLoanForLendersTest() throws Exception {
-        assertEquals(2330.00, lenderService.getMaximumLoanValue(),0.001);
+        assertEquals(new BigDecimal("2330"), lenderService.getMaximumLoanValue());
     }
 
     @Test
     public void shouldGetLenderFromLenderListTest() throws Exception {
         Lender bob = lenders.get(0);
         assertEquals("Bob", bob.getName());
-        assertEquals(0.075, bob.getRate(),0.001);
-        assertEquals(640, bob.getAvailableAmount(),1);
+        assertEquals(BigDecimal.valueOf(0.075), bob.getRate());
+        assertEquals(new BigDecimal("640"), bob.getAvailableAmount());
     }
 
     @Test
@@ -54,4 +56,16 @@ public class LenderServiceTest {
         List<Lender> selectedLender = lenderService.getListOfLendersForQuote(requestedAmount);
         assertEquals(expectedLenders, selectedLender);
     }
+
+    @Test
+    public void shouldReturnListOfMemberWithLowestRateIfTheyHaveEnoughToCoverQuote() throws Exception {
+        Lender jane = lenders.get(1);
+        Integer requestedAmount = new Integer("100");
+        List<Lender> expectedLender = Collections.singletonList(jane);
+        List<Lender> requiredLender = lenderService.getListOfLendersForQuote(requestedAmount);
+        assertEquals(expectedLender, requiredLender);
+    }
+
+
+
 }

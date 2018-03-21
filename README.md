@@ -84,6 +84,9 @@ In the root project after running maven build or maven test then in root folder 
 - TDD used so that unit tests created fails and then fix/implemented the code to fix the test.
 - Uses monthly compounding interest.
 - Used Jacoco for test coverage.
+- Using double data type I was not getting the extact monthly repayment (£30.88) and total repayment (£1111.68) based on
+  £1000 requirement amount. So switched to using BigDecimal to get better precision, but getting same values as using
+  double data type. Unable to get the same values as the ones in the example.
 
 
 ##Requirements

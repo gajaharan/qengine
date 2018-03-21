@@ -6,6 +6,7 @@ import com.gajaharan.loan.services.LoanCalculatorService;
 import com.gajaharan.loan.services.impl.LenderServiceImpl;
 import com.gajaharan.loan.services.impl.LoanCalculatorServiceImpl;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -15,9 +16,9 @@ import java.util.List;
 public class LoanQuote {
 
     private Integer requestedLoanAmount;
-    private double loanRate;
-    private double monthlyRepayment;
-    private double totalRepayment;
+    private BigDecimal loanRate;
+    private BigDecimal monthlyRepayment;
+    private BigDecimal totalRepayment;
 
     private List<Lender> lenders;
 
@@ -30,7 +31,7 @@ public class LoanQuote {
         this.lenders = lenderService.getListOfLendersForQuote(requestedLoanAmount);
         this.quoteCalculatorService = new LoanCalculatorServiceImpl(requestedLoanAmount, lenders);
 
-        this.loanRate = quoteCalculatorService.getAverageLoanRate();
+        this.loanRate = quoteCalculatorService.getAverageLoanRate().scaleByPowerOfTen(2);
         this.monthlyRepayment = quoteCalculatorService.getMonthlyPayment();
         this.totalRepayment = quoteCalculatorService.getTotalPayment();
     }
@@ -39,23 +40,23 @@ public class LoanQuote {
         return requestedLoanAmount;
     }
 
-    public double getLoanRate() {
+    public BigDecimal getLoanRate() {
         return loanRate;
     }
 
-    public double getMonthlyRepayment() {
+    public BigDecimal getMonthlyRepayment() {
         return monthlyRepayment;
     }
 
-    public double getTotalRepayment() {
+    public BigDecimal getTotalRepayment() {
         return totalRepayment;
     }
 
     @Override
     public String toString() {
         return "Requested amount: £" + getRequestedLoanAmount() + "\n" +
-                "Rate:" + Math.round(getLoanRate() * 100) + "%\n" +
-                "Monthly repayment: £" + new DecimalFormat("###.##").format(getMonthlyRepayment()) + "\n" +
-                "Total repayment: £" + new DecimalFormat("###.##").format(getTotalRepayment());
+                "Rate:" + getLoanRate() + "%\n" +
+                "Monthly repayment: £" + getMonthlyRepayment() + "\n" +
+                "Total repayment: £" + getTotalRepayment();
     }
 }

@@ -5,6 +5,8 @@ import com.gajaharan.loan.models.Lender;
 import com.gajaharan.loan.services.LenderService;
 import com.gajaharan.loan.utils.CSVParser;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,34 +37,36 @@ public class LenderServiceImpl implements LenderService {
     /**
      * Gets list of all lenders who match the requested amount from the quote
      *
-     * @param requestedAmount
+     * @param amount
      * @return
      * @throws LoanUnavailableException
      */
     @Override
-    public List<Lender> getListOfLendersForQuote(Integer requestedAmount) throws LoanUnavailableException {
-        double availableAmountToLend = getMaximumLoanValue();
+    public List<Lender> getListOfLendersForQuote(Integer amount) throws LoanUnavailableException {
+        BigDecimal availableAmountToLend = getMaximumLoanValue();
+        BigDecimal requestedAmount = new BigDecimal(amount);
 
-        if (requestedAmount > availableAmountToLend) {
+        if (requestedAmount.compareTo(availableAmountToLend) > 0) {
             throw new LoanUnavailableException(QUOTE_UNAVAILABLE);
         }
 
         // Sort lenders by lowest rate first
         Collections.sort(lenders);
 
-        Integer remainingAmount = requestedAmount;
+        BigDecimal remainingAmount = requestedAmount;
         List<Lender> selectedLenders = new ArrayList<>();
 
         for (Lender lender : lenders) {
-            if (remainingAmount <= 0) {
+            if (remainingAmount.compareTo(BigDecimal.ZERO) <= 0) {
                 break;
             }
-            if (lender.getAvailableAmount() > remainingAmount) {
+            if (lender.getAvailableAmount().compareTo(remainingAmount) > 0) {
                 selectedLenders.add(lender);
-                remainingAmount = 0;
+                remainingAmount = BigDecimal.ZERO;
 
             } else {
-                remainingAmount -= lender.getAvailableAmount();
+                MathContext mc = new MathContext(2);
+                remainingAmount = remainingAmount.subtract(lender.getAvailableAmount(), mc);
                 selectedLenders.add(lender);
             }
         }
@@ -75,9 +79,9 @@ public class LenderServiceImpl implements LenderService {
      * @return
      */
     @Override
-    public double getMaximumLoanValue() {
+    public BigDecimal getMaximumLoanValue() {
         return lenders.stream()
-                .mapToInt(Lender::getAvailableAmount)
-                .sum();
+                .map(Lender::getAvailableAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

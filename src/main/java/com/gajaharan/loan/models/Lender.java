@@ -1,14 +1,20 @@
 package com.gajaharan.loan.models;
 
+import java.math.BigDecimal;
+
 /**
  * Created by gsatkunanandan on 18/03/2018.
  */
 public class Lender implements Comparable<Lender> {
     private String name;
-    private double rate;
-    private Integer availableAmount;
+    private BigDecimal rate;
+    private BigDecimal availableAmount;
 
-    public Lender(String name, double rate, Integer availableAmount) {
+    public Lender() {
+
+    }
+
+    public Lender(String name, BigDecimal rate, BigDecimal availableAmount) {
         this.name = name;
         this.rate = rate;
         this.availableAmount = availableAmount;
@@ -26,7 +32,7 @@ public class Lender implements Comparable<Lender> {
      *
      * @return Lender's current rate
      */
-    public double getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
@@ -34,7 +40,7 @@ public class Lender implements Comparable<Lender> {
      *
      * @return Lender's available amount from lenders
      */
-    public Integer getAvailableAmount() {
+    public BigDecimal getAvailableAmount() {
         return availableAmount;
     }
 
@@ -43,7 +49,7 @@ public class Lender implements Comparable<Lender> {
      */
     @Override
     public int compareTo(Lender lender) {
-        return Double.compare(getRate(), lender.getRate());
+        return getRate().compareTo(lender.getRate());
     }
 
 
