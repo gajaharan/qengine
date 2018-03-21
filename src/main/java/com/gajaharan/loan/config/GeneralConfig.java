@@ -23,4 +23,5 @@ public class GeneralConfig {
     public static final String QUOTE_UNAVAILABLE = "Sorry, it is not possible to provide a loan at this time.";
 
     public static final String TEST_RESOURCE_LOCATION = "src/test/resources/MarketData.csv";
+    public static final String INVALID_TEST_RESOURCE_LOCATION = "src/test/resources/InvalidMarketData.csv";
 }

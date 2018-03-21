@@ -91,7 +91,7 @@ In the root project after running maven build or maven test then in root folder 
 
 ##Requirements
 - [Z-001] CSV Parser                - DONE
-- [Z-002] CSV Format Validator
+- [Z-002] CSV Format Validator      - DONE
 - [Z-003] Input Validator           - DONE
 - [Z-004] Lender Model              - DONE
 - [Z-005] Loan Quote Model          - DONE
